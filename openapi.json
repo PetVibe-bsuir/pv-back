@@ -1,9 +1,9 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Your API Title",
-    "description": "Your API description",
-    "version": "0.1.0"
+    "title": "PetVibe API",
+    "description": "Do you really need this?",
+    "version": "SuperAlfa"
   },
   "paths": {
     "/": {
