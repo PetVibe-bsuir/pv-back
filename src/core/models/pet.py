@@ -2,7 +2,7 @@ from sqlalchemy import Integer, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from typing import List, TYPE_CHECKING
 
-from .pet_achievement import association_table
+from .pet_achievement import PetAchievement
 from .base import Base
 
 if TYPE_CHECKING:
@@ -16,4 +16,4 @@ class Pet(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     user: Mapped["User"] = relationship(back_populates="pet")
     stats: Mapped[List["Stat"]] = relationship()
-    achievement: Mapped[List["Achievement"]] = relationship(secondary=association_table)
+    achievement: Mapped[List["Achievement"]] = relationship(secondary=PetAchievement)

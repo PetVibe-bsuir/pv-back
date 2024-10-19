@@ -1,11 +1,12 @@
-from sqlalchemy import Column, ForeignKey, Table, Integer
+from sqlalchemy import Column, ForeignKey, Integer, DateTime, func
+from sqlalchemy.orm import Mapped, mapped_column
+from datetime import datetime
 
 from . import Base
 
-association_table = Table(
-    "pet_achievements",
-    Base.metadata,
-    Column("id", Integer, primary_key=True),
-    Column("pet_id", ForeignKey("pets.id")),
-    Column("achievement_id", ForeignKey("achievements.id")),
-)
+
+class PetAchievement(Base):
+    __tablename__ = "pet_achievements"
+    pet_id: Mapped[int] = mapped_column(ForeignKey("pets.id"))
+    achievement_id: Mapped[int] = mapped_column(ForeignKey("achievements.id"))
+    achieved_in: Mapped[datetime] = mapped_column(server_default=func.now())
